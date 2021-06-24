@@ -13,6 +13,5 @@ class ThemeModel with ChangeNotifier {
 
   void initMode() {
     contrasteColor = _mode == ThemeMode.light ? Colors.black : Colors.white;
-    notifyListeners();
   }
 }

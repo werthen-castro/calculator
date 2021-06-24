@@ -24,11 +24,11 @@ class _MyAppState extends State<MyApp> {
         create: (_) => ThemeModel(),
         child: Consumer<ThemeModel>(builder: (_, model, __) {
           return MaterialApp(
-            theme: ThemeData.light(), // Provide light theme
+            theme: ThemeData.light(),
             darkTheme: ThemeData.dark(),
             themeMode: model.mode,
             home: LocalizationWidget(
-              child: MyHomePage(),
+              child: Home(),
             ),
           );
         }));
