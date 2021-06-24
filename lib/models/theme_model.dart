@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ThemeModel with ChangeNotifier {
-  ThemeMode _mode;
+  late ThemeMode _mode;
+  late Color contrasteColor;
   ThemeMode get mode => _mode;
   ThemeModel({ThemeMode mode = ThemeMode.light}) : _mode = mode;
-  Color contrasteColor;
 
   void toggleMode() {
     _mode = _mode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
