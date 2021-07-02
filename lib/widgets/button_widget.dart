@@ -5,8 +5,10 @@ import 'package:provider/provider.dart';
 class ButtonWidget extends StatelessWidget {
   final String value;
   final double fontSize;
+  final bool collumFinal;
 
-  ButtonWidget({required this.value, this.fontSize = 45});
+  ButtonWidget(
+      {required this.value, this.fontSize = 55, this.collumFinal = false});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,9 @@ class ButtonWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: fontSize,
                     color: value != '='
-                        ? context.read<ThemeModel>().contrasteColor
+                        ? collumFinal
+                            ? Colors.red
+                            : context.read<ThemeModel>().contrasteColor
                         : Colors.white),
               ),
             ),
