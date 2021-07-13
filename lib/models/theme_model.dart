@@ -7,7 +7,9 @@ class ThemeModel with ChangeNotifier {
   ThemeModel({ThemeMode mode = ThemeMode.light}) : _mode = mode;
 
   void toggleMode() {
-    _mode = _mode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    _mode = _mode == ThemeMode.light ? ThemeMode.values[0] : ThemeMode.light;
+    contrasteColor = _mode == ThemeMode.light ? Colors.black : Colors.white;
+
     notifyListeners();
   }
 

@@ -7,8 +7,11 @@ class ButtonWidget extends StatelessWidget {
   final double fontSize;
   final bool collumFinal;
 
-  ButtonWidget(
-      {required this.value, this.fontSize = 55, this.collumFinal = false});
+  ButtonWidget({
+    required this.value,
+    this.fontSize = 55,
+    this.collumFinal = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +22,14 @@ class ButtonWidget extends StatelessWidget {
           color: value != '=' ? Colors.transparent : Colors.red,
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(6.0),
+              padding: EdgeInsets.only(
+                left: 6,
+                right: 5,
+              ),
               child: Text(
                 value,
                 style: TextStyle(
+                    decoration: TextDecoration.none,
                     fontSize: fontSize,
                     color: value != '='
                         ? collumFinal
