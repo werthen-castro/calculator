@@ -29,13 +29,14 @@ class ButtonWidget extends StatelessWidget {
               child: Text(
                 value,
                 style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: fontSize,
-                    color: value != '='
-                        ? collumFinal
-                            ? Colors.red
-                            : context.read<ThemeModel>().contrasteColor
-                        : Colors.white),
+                  decoration: TextDecoration.none,
+                  fontSize: fontSize,
+                  color: value != '='
+                      ? collumFinal
+                          ? Colors.red
+                          : context.read<ThemeModel>().contrasteColor
+                      : Colors.white,
+                ),
               ),
             ),
           ),
