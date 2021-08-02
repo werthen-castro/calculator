@@ -1,5 +1,7 @@
+import 'package:calculator/store/controller.dart';
 import 'package:calculator/widgets/button_mode_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
 import 'models/theme_model.dart';
@@ -14,12 +16,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   static const List<String> collumnFour = ['←', '÷', '×', '-', '+', '='];
-  static const List<String> collumnThree = ['%', 'log', '9', '6', '3', ','];
-  static const List<String> collumnTwo = ['CE', 'n!', '8', '5', '2', '0'];
+  static const List<String> collumnThree = ['n!', 'π', '9', '6', '3', ','];
+  static const List<String> collumnTwo = ['%', 'e', '8', '5', '2', '0'];
   static const List<String> collumnOne = ['C', 'x²', '7', '4', '1', '±'];
-
-  final resultController = TextEditingController(text: '10 + 20');
-  final operationController = TextEditingController(text: '30000');
 
   double gridHeight = 0;
 
@@ -56,23 +55,30 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               padding: const EdgeInsets.only(
                 right: 20,
               ),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      operationController.text,
-                      style: TextStyle(
-                          fontSize: 100,
-                          color: context.read<ThemeModel>().contrasteColor),
-                    ),
-                    Text(
-                      operationController.text,
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: context.read<ThemeModel>().contrasteColor),
-                    ),
-                  ]),
+              child: Observer(builder: (_) {
+                return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        context.read<Controller>().erro ??
+                            context
+                                .read<Controller>()
+                                .result
+                                .toString()
+                                .replaceAll('.', ','),
+                        style: TextStyle(
+                            fontSize: 100,
+                            color: context.read<ThemeModel>().contrasteColor),
+                      ),
+                      Text(
+                        context.read<Controller>().expressionTotal,
+                        style: TextStyle(
+                            fontSize: 40,
+                            color: context.read<ThemeModel>().contrasteColor),
+                      ),
+                    ]);
+              }),
             ),
           ),
           Expanded(

@@ -1,4 +1,5 @@
 import 'package:calculator/models/theme_model.dart';
+import 'package:calculator/store/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,9 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          context.read<Controller>().teclar(value);
+        },
         child: Container(
           color: value != '=' ? Colors.transparent : Colors.red,
           child: Center(

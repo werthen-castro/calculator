@@ -1,3 +1,6 @@
 {
-    "dart.flutterSdkPath": "C:\\Users\\Werthen\\Documents\\calculator\\.fvm\\flutter_sdk"
+  "dart.flutterSdkPaths": [
+    "C:/Users/wcast/fvm/versions"
+  ],
+  "dart.flutterSdkPath": "C:\\Users\\wcast\\fvm\\versions\\2.2.3"
 }
