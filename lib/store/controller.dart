@@ -30,11 +30,15 @@ abstract class ControllerBase with Store {
     String op = '';
 
     if (expressionParcial.length >= 3) {
-      num1 = double.parse(
-          expressionParcial[tam - 3].replaceAll(',', '.').replaceAll('!', ''));
+      num1 = double.parse(expressionParcial[tam - 3]
+          .replaceAll(',', '.')
+          .replaceAll('!', '')
+          .replaceAll('²', ''));
       op = expressionParcial[tam - 2];
-      num2 = double.parse(
-          expressionParcial[tam - 1].replaceAll(',', '.').replaceAll('!', ''));
+      num2 = double.parse(expressionParcial[tam - 1]
+          .replaceAll(',', '.')
+          .replaceAll('!', '')
+          .replaceAll('²', ''));
 
       if (result != 0) {
         num1 = result;
@@ -85,6 +89,32 @@ abstract class ControllerBase with Store {
     }
   }
 
+  porcentagem() {
+    List expressionParcial = expressionTotal.split(' ');
+    int tam = expressionParcial.length;
+    var res = expressionParcial[tam - 1];
+    result = double.parse(res) / 100.0;
+  }
+
+  potencia() {
+    List<String> expressionParcial = expressionTotal.split(' ');
+    int tam = expressionParcial.length;
+    var res = expressionParcial[tam - 1];
+    result = double.parse(res) * double.parse(res);
+  }
+
+  unicaOperacao(String op) {
+    int tam = expressionTotal.length;
+
+    if (expressionTotal[tam - 1] == ' ') {
+      expressionTotal = expressionTotal.substring(0, tam - 3);
+    } else {
+      operation();
+    }
+
+    expressionTotal += op;
+  }
+
   @action
   teclar(String op) {
     switch (op) {
@@ -92,25 +122,22 @@ abstract class ControllerBase with Store {
         removerTecla();
         break;
       case '÷':
-        operation();
-        expressionTotal += ' ÷ ';
+        unicaOperacao(' ÷ ');
         break;
       case '×':
-        operation();
-        expressionTotal += ' × ';
+        unicaOperacao(' × ');
         break;
       case '-':
-        operation();
-        expressionTotal += ' - ';
+        unicaOperacao(' - ');
         break;
       case '+':
-        operation();
-        expressionTotal += ' + ';
+        unicaOperacao(' + ');
         break;
       case '=':
-        operation();
+        unicaOperacao(result.toString());
         break;
       case '%':
+        porcentagem();
         break;
       case 'π':
         expressionTotal += '3,141592653';
@@ -151,6 +178,8 @@ abstract class ControllerBase with Store {
         result = 0;
         break;
       case 'x²':
+        potencia();
+        expressionTotal += '²';
         break;
       case '7':
         expressionTotal += '7';
