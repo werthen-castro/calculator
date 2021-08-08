@@ -20,6 +20,7 @@ dependencies:
   build_runner: ^2.0.6  
   firebase_core: ^1.4.0
   firebase_crashlytics: ^2.1.1
+  google_mobile_ads: ^0.13.3
 
 dev_dependencies:
   flutter_native_splash: ^1.2.0

@@ -2,6 +2,7 @@ import 'package:calculator/store/controller.dart';
 import 'package:calculator/widgets/button_mode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import 'models/theme_model.dart';
@@ -19,12 +20,23 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   static const List<String> collumnThree = ['n!', 'π', '9', '6', '3', ','];
   static const List<String> collumnTwo = ['%', 'e', '8', '5', '2', '0'];
   static const List<String> collumnOne = ['C', 'x²', '7', '4', '1', '±'];
+  static AdSize adSize = AdSize(height: 50, width: 300);
+
+  static BannerAd myBanner = BannerAd(
+    adUnitId: "ca-app-pub-7971613376829432/8918532656",
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+  final AdWidget adWidget = AdWidget(ad: myBanner);
 
   double gridHeight = 0;
 
   @override
   void didChangeDependencies() {
     context.read<ThemeModel>().initMode();
+
+    myBanner.load();
 
     super.didChangeDependencies();
   }
@@ -37,17 +49,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           : Colors.black,
       body: Column(
         children: [
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Container(
-                  height: 140,
-                ),
-                ButtonModeWidget(),
-              ],
-            ),
+          Expanded(
+            child: adWidget,
           ),
+          ButtonModeWidget(),
           Container(
             height: 171,
             width: MediaQuery.of(context).size.width,
@@ -82,6 +87,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
+            flex: 3,
             child: Container(
               color: context.read<ThemeModel>().mode == ThemeMode.light
                   ? Colors.white
