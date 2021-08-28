@@ -1,16 +1,23 @@
 # calculator
 
-A new Flutter project.
+O projeto é uma calculadora simples para testes de tecnologia.
 
-## Getting Started
+Features:
+ 1. Dois temas Ligth e Dark;
+ 2. Reporte de erros com o Firebase Crashlytics; 
+ 3. Publicidade com Firabse AdMob; 
+ 4. Gerencia de estado com o MobX;
+ 5. Intermacionalização de idiomas;
+ 6. Notificação Push com Firebase Messaging
 
-This project is a starting point for a Flutter application.
+Modo Ligth
 
-A few resources to get you started if this is your first Flutter project:
+<img src="https://user-images.githubusercontent.com/37318106/131226476-60e0604b-355b-4dc3-b779-48c11003f901.jpeg"  width="200" height="400" />
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Modo Dark
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/37318106/131226471-1dac6e4f-e73e-45c7-a1fc-273807c4d19f.jpeg" width="200" height="400" />
+
+  
+
+
