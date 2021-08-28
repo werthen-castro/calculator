@@ -21,7 +21,7 @@ class _ButtonModeWidgetState extends State<ButtonModeWidget> {
         child: Container(
           width: 100,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(bottom: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

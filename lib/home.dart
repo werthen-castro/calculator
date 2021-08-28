@@ -23,7 +23,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   static AdSize adSize = AdSize(height: 50, width: 300);
 
   static BannerAd myBanner = BannerAd(
-    adUnitId: "ca-app-pub-7971613376829432/8918532656",
+    adUnitId: BannerAd.testAdUnitId,
     size: AdSize.banner,
     request: AdRequest(),
     listener: BannerAdListener(),
@@ -48,13 +48,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           ? Colors.white
           : Colors.black,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
             child: adWidget,
           ),
           ButtonModeWidget(),
           Container(
-            height: 171,
+            height: 181,
             width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: const EdgeInsets.only(
