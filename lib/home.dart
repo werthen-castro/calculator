@@ -20,7 +20,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   static const List<String> collumnThree = ['n!', 'π', '9', '6', '3', ','];
   static const List<String> collumnTwo = ['%', 'e', '8', '5', '2', '0'];
   static const List<String> collumnOne = ['C', 'x²', '7', '4', '1', '±'];
-  static AdSize adSize = AdSize(height: 50, width: 300);
 
   static BannerAd myBanner = BannerAd(
     adUnitId: BannerAd.testAdUnitId,
@@ -66,22 +65,34 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        context.read<Controller>().erro ??
-                            context
-                                .read<Controller>()
-                                .result
-                                .toString()
-                                .replaceAll('.', ','),
-                        style: TextStyle(
-                            fontSize: 100,
-                            color: context.read<ThemeModel>().contrasteColor),
+                      FittedBox(
+                        fit: BoxFit.cover,
+                        child: Text(
+                          context.read<Controller>().erro ??
+                              context
+                                  .read<Controller>()
+                                  .result
+                                  .toString()
+                                  .replaceAll('.', ','),
+                          style: TextStyle(
+                              fontSize: 90,
+                              color: context.read<ThemeModel>().contrasteColor),
+                        ),
                       ),
-                      Text(
-                        context.read<Controller>().expressionTotal,
-                        style: TextStyle(
-                            fontSize: 40,
-                            color: context.read<ThemeModel>().contrasteColor),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                          child: Expanded(
+                            child: Text(
+                              context.read<Controller>().expressionTotal,
+                              style: TextStyle(
+                                  fontSize: 40,
+                                  color: context
+                                      .read<ThemeModel>()
+                                      .contrasteColor),
+                            ),
+                          ),
+                        ),
                       ),
                     ]);
               }),

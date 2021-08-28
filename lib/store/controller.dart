@@ -23,7 +23,25 @@ abstract class ControllerBase with Store {
     }
   }
 
-  operation() {
+  inverterSinal() {
+    result = -result;
+  }
+
+  unicaOperacao(String op) {
+    int tam = expressionTotal.length;
+
+    if (expressionTotal[tam - 1] == ' ') {
+      expressionTotal = expressionTotal.substring(0, tam - 3);
+    } else if (op == ' = ') {
+      operation();
+      expressionTotal = result.toString().replaceAll('.', ',');
+    } else {
+      operation(igual: op);
+      expressionTotal += op;
+    }
+  }
+
+  operation({String? igual}) {
     List expressionParcial = expressionTotal.split(' ');
     int tam = expressionParcial.length;
     double num1 = 0, num2 = 0;
@@ -44,15 +62,11 @@ abstract class ControllerBase with Store {
         num1 = result;
       }
 
-      calc(op, num1, num2);
+      calc(op, num1, num2, igual);
     }
   }
 
-  inverterSinal() {
-    result = -result;
-  }
-
-  calc(String op, double num1, double num2) {
+  calc(String op, double num1, double num2, igual) {
     switch (op) {
       case '÷':
         result = num1 / num2;
@@ -103,18 +117,6 @@ abstract class ControllerBase with Store {
     result = double.parse(res) * double.parse(res);
   }
 
-  unicaOperacao(String op) {
-    int tam = expressionTotal.length;
-
-    if (expressionTotal[tam - 1] == ' ') {
-      expressionTotal = expressionTotal.substring(0, tam - 3);
-    } else {
-      operation();
-    }
-
-    expressionTotal += op;
-  }
-
   @action
   teclar(String op) {
     switch (op) {
@@ -134,7 +136,7 @@ abstract class ControllerBase with Store {
         unicaOperacao(' + ');
         break;
       case '=':
-        unicaOperacao(result.toString());
+        unicaOperacao(' = ');
         break;
       case '%':
         porcentagem();
